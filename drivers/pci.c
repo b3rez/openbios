@@ -1312,7 +1312,10 @@ static void ob_pci_add_properties(phandle_t phandle,
 	set_int_property(dev, "class-code", class_code << 8 | class_prog);
 
 #ifdef CONFIG_XBOX360
-    irq = 0;
+	set_int_property(dev, "#address-cells", 3);
+    set_int_property(dev, "#size-cells", 2);
+	
+	irq = 0;
     if ((PCI_BUS(config->dev) == 0) && (PCI_DEV(config->dev) == 2) && (PCI_FN(config->dev) == 0)) {
         irq = 0x58;
     } else if ((PCI_BUS(config->dev) == 1) && (PCI_FN(config->dev) == 0)) {
